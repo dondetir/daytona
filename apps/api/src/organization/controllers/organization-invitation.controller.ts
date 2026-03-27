@@ -14,8 +14,8 @@ import { OrganizationInvitationDto } from '../dto/organization-invitation.dto'
 import { OrganizationMemberRole } from '../enums/organization-member-role.enum'
 import { OrganizationAuthContextGuard } from '../guards/organization-auth-context.guard'
 import { OrganizationInvitationService } from '../services/organization-invitation.service'
-import { IsUserAuthContext } from '../../common/decorators/auth-context.decorator'
-import { UserAuthContext } from '../../common/interfaces/user-auth-context.interface'
+import { IsOrganizationAuthContext } from '../../common/decorators/auth-context.decorator'
+import { OrganizationAuthContext } from '../../common/interfaces/organization-auth-context.interface'
 import { Audit, TypedRequest } from '../../audit/decorators/audit.decorator'
 import { AuditAction } from '../../audit/enums/audit-action.enum'
 import { AuditTarget } from '../../audit/enums/audit-target.enum'
@@ -61,7 +61,7 @@ export class OrganizationInvitationController {
     },
   })
   async create(
-    @IsUserAuthContext() authContext: UserAuthContext,
+    @IsOrganizationAuthContext() authContext: OrganizationAuthContext,
     @Param('organizationId') organizationId: string,
     @Body() createOrganizationInvitationDto: CreateOrganizationInvitationDto,
   ): Promise<OrganizationInvitationDto> {
