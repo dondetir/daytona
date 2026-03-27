@@ -8562,10 +8562,6 @@ paths:
           description: The Health Check is not successful
       security:
       - bearer: []
-      - oauth2:
-        - openid
-        - profile
-        - email
       tags:
       - Health
   /sandbox/{sandboxId}/telemetry/logs:

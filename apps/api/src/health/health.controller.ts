@@ -9,7 +9,7 @@ import { RedisHealthIndicator } from './redis.health'
 import { AnonymousRateLimitGuard } from '../common/guards/anonymous-rate-limit.guard'
 import { AuthenticatedRateLimitGuard } from '../common/guards/authenticated-rate-limit.guard'
 import { HealthCheckAuthContextGuard } from './guards/health-check-auth-context.guard'
-import { ApiBearerAuth, ApiOAuth2 } from '@nestjs/swagger'
+import { ApiBearerAuth } from '@nestjs/swagger'
 import { Public } from '../auth/decorators/public.decorator'
 import { AuthStrategy } from '../auth/decorators/auth-strategy.decorator'
 import { AuthStrategyType } from '../auth/enums/auth-strategy-type.enum'
@@ -32,7 +32,6 @@ export class HealthController {
   }
 
   @Get('ready')
-  @ApiOAuth2(['openid', 'profile', 'email'])
   @ApiBearerAuth()
   @AuthStrategy(AuthStrategyType.API_KEY)
   @UseGuards(AuthenticatedRateLimitGuard)
