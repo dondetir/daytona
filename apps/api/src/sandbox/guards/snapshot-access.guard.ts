@@ -51,7 +51,7 @@ export class SnapshotAccessGuard implements CanActivate {
         case isRegionAuthContext(authContext): {
           const isAvailable = await this.snapshotService.isAvailableInRegion(snapshot.id, authContext.regionId)
           if (!isAvailable) {
-            throw new ForbiddenException(`Snapshot is not available in region ${authContext.regionId}`)
+            throw new NotFoundException(`Snapshot is not available in region ${authContext.regionId}`)
           }
           break
         }
