@@ -214,7 +214,7 @@ export class ApiKeyStrategy extends PassportStrategy(Strategy, AuthStrategyType.
       }
       return JSON.parse(cached)
     } catch (error) {
-      this.logger.error('Error getting user cache:', error)
+      this.logger.error('Error getting or parsing user cache:', error)
       return null
     }
   }
@@ -243,7 +243,7 @@ export class ApiKeyStrategy extends PassportStrategy(Strategy, AuthStrategyType.
 
       return apiKey
     } catch (error) {
-      this.logger.error('Error getting API key cache:', error)
+      this.logger.error('Error getting or parsing API key cache:', error)
       return null
     }
   }
