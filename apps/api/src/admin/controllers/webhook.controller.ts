@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Body, Controller, Get, HttpStatus, NotFoundException, Param, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, HttpCode, HttpStatus, NotFoundException, Param, Post, UseGuards } from '@nestjs/common'
 import { AuthenticatedRateLimitGuard } from '../../common/guards/authenticated-rate-limit.guard'
 import { ApiBearerAuth, ApiOAuth2, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RequiredSystemRole } from '../../user/decorators/required-system-role.decorator'
@@ -31,6 +31,7 @@ export class AdminWebhookController {
   ) {}
 
   @Post('organizations/:organizationId/send')
+  @HttpCode(200)
   @ApiOperation({
     summary: 'Send a webhook message to an organization',
     operationId: 'adminSendWebhook',
