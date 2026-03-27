@@ -22,6 +22,7 @@ module DaytonaApiClient
     # Get Svix Consumer App Portal access for an organization
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_daytona_organization_id Use with JWT to specify the organization ID
     # @return [WebhookAppPortalAccess]
     def webhook_controller_get_app_portal_access(organization_id, opts = {})
       data, _status_code, _headers = webhook_controller_get_app_portal_access_with_http_info(organization_id, opts)
@@ -31,6 +32,7 @@ module DaytonaApiClient
     # Get Svix Consumer App Portal access for an organization
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_daytona_organization_id Use with JWT to specify the organization ID
     # @return [Array<(WebhookAppPortalAccess, Integer, Hash)>] WebhookAppPortalAccess data, response status code and response headers
     def webhook_controller_get_app_portal_access_with_http_info(organization_id, opts = {})
       if @api_client.config.debugging
@@ -50,6 +52,7 @@ module DaytonaApiClient
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      header_params[:'X-Daytona-Organization-ID'] = opts[:'x_daytona_organization_id'] if !opts[:'x_daytona_organization_id'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -83,6 +86,7 @@ module DaytonaApiClient
     # Get webhook initialization status for an organization
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_daytona_organization_id Use with JWT to specify the organization ID
     # @return [WebhookInitializationStatus]
     def webhook_controller_get_initialization_status(organization_id, opts = {})
       data, _status_code, _headers = webhook_controller_get_initialization_status_with_http_info(organization_id, opts)
@@ -92,6 +96,7 @@ module DaytonaApiClient
     # Get webhook initialization status for an organization
     # @param organization_id [String] 
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :x_daytona_organization_id Use with JWT to specify the organization ID
     # @return [Array<(WebhookInitializationStatus, Integer, Hash)>] WebhookInitializationStatus data, response status code and response headers
     def webhook_controller_get_initialization_status_with_http_info(organization_id, opts = {})
       if @api_client.config.debugging
@@ -111,6 +116,7 @@ module DaytonaApiClient
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
       header_params['Accept'] = @api_client.select_header_accept(['application/json']) unless header_params['Accept']
+      header_params[:'X-Daytona-Organization-ID'] = opts[:'x_daytona_organization_id'] if !opts[:'x_daytona_organization_id'].nil?
 
       # form parameters
       form_params = opts[:form_params] || {}

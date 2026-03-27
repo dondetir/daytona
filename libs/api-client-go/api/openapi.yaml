@@ -8420,6 +8420,14 @@ paths:
     post:
       operationId: WebhookController_getAppPortalAccess
       parameters:
+      - description: Use with JWT to specify the organization ID
+        explode: false
+        in: header
+        name: X-Daytona-Organization-ID
+        required: false
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: organizationId
@@ -8447,6 +8455,14 @@ paths:
     get:
       operationId: WebhookController_getInitializationStatus
       parameters:
+      - description: Use with JWT to specify the organization ID
+        explode: false
+        in: header
+        name: X-Daytona-Organization-ID
+        required: false
+        schema:
+          type: string
+        style: simple
       - explode: false
         in: path
         name: organizationId

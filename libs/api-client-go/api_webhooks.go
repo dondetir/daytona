@@ -57,6 +57,13 @@ type WebhooksAPIWebhookControllerGetAppPortalAccessRequest struct {
 	ctx context.Context
 	ApiService WebhooksAPI
 	organizationId string
+	xDaytonaOrganizationID *string
+}
+
+// Use with JWT to specify the organization ID
+func (r WebhooksAPIWebhookControllerGetAppPortalAccessRequest) XDaytonaOrganizationID(xDaytonaOrganizationID string) WebhooksAPIWebhookControllerGetAppPortalAccessRequest {
+	r.xDaytonaOrganizationID = &xDaytonaOrganizationID
+	return r
 }
 
 func (r WebhooksAPIWebhookControllerGetAppPortalAccessRequest) Execute() (*WebhookAppPortalAccess, *http.Response, error) {
@@ -117,6 +124,9 @@ func (a *WebhooksAPIService) WebhookControllerGetAppPortalAccessExecute(r Webhoo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.xDaytonaOrganizationID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Daytona-Organization-ID", r.xDaytonaOrganizationID, "simple", "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -158,6 +168,13 @@ type WebhooksAPIWebhookControllerGetInitializationStatusRequest struct {
 	ctx context.Context
 	ApiService WebhooksAPI
 	organizationId string
+	xDaytonaOrganizationID *string
+}
+
+// Use with JWT to specify the organization ID
+func (r WebhooksAPIWebhookControllerGetInitializationStatusRequest) XDaytonaOrganizationID(xDaytonaOrganizationID string) WebhooksAPIWebhookControllerGetInitializationStatusRequest {
+	r.xDaytonaOrganizationID = &xDaytonaOrganizationID
+	return r
 }
 
 func (r WebhooksAPIWebhookControllerGetInitializationStatusRequest) Execute() (*WebhookInitializationStatus, *http.Response, error) {
@@ -217,6 +234,9 @@ func (a *WebhooksAPIService) WebhookControllerGetInitializationStatusExecute(r W
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xDaytonaOrganizationID != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Daytona-Organization-ID", r.xDaytonaOrganizationID, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {

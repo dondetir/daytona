@@ -35,10 +35,11 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Get Svix Consumer App Portal access for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        webhookControllerGetAppPortalAccess: async (organizationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        webhookControllerGetAppPortalAccess: async (organizationId: string, xDaytonaOrganizationID?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('webhookControllerGetAppPortalAccess', 'organizationId', organizationId)
             const localVarPath = `/webhooks/organizations/{organizationId}/app-portal-access`
@@ -62,6 +63,9 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
+            if (xDaytonaOrganizationID != null) {
+                localVarHeaderParameter['X-Daytona-Organization-ID'] = String(xDaytonaOrganizationID);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -75,10 +79,11 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
          * 
          * @summary Get webhook initialization status for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        webhookControllerGetInitializationStatus: async (organizationId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        webhookControllerGetInitializationStatus: async (organizationId: string, xDaytonaOrganizationID?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'organizationId' is not null or undefined
             assertParamExists('webhookControllerGetInitializationStatus', 'organizationId', organizationId)
             const localVarPath = `/webhooks/organizations/{organizationId}/initialization-status`
@@ -102,6 +107,9 @@ export const WebhooksApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
+            if (xDaytonaOrganizationID != null) {
+                localVarHeaderParameter['X-Daytona-Organization-ID'] = String(xDaytonaOrganizationID);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -125,11 +133,12 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get Svix Consumer App Portal access for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async webhookControllerGetAppPortalAccess(organizationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookAppPortalAccess>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerGetAppPortalAccess(organizationId, options);
+        async webhookControllerGetAppPortalAccess(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookAppPortalAccess>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerGetAppPortalAccess(organizationId, xDaytonaOrganizationID, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.webhookControllerGetAppPortalAccess']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -138,11 +147,12 @@ export const WebhooksApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get webhook initialization status for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async webhookControllerGetInitializationStatus(organizationId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookInitializationStatus>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerGetInitializationStatus(organizationId, options);
+        async webhookControllerGetInitializationStatus(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookInitializationStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.webhookControllerGetInitializationStatus(organizationId, xDaytonaOrganizationID, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['WebhooksApi.webhookControllerGetInitializationStatus']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -161,21 +171,23 @@ export const WebhooksApiFactory = function (configuration?: Configuration, baseP
          * 
          * @summary Get Svix Consumer App Portal access for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        webhookControllerGetAppPortalAccess(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookAppPortalAccess> {
-            return localVarFp.webhookControllerGetAppPortalAccess(organizationId, options).then((request) => request(axios, basePath));
+        webhookControllerGetAppPortalAccess(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookAppPortalAccess> {
+            return localVarFp.webhookControllerGetAppPortalAccess(organizationId, xDaytonaOrganizationID, options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @summary Get webhook initialization status for an organization
          * @param {string} organizationId 
+         * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        webhookControllerGetInitializationStatus(organizationId: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookInitializationStatus> {
-            return localVarFp.webhookControllerGetInitializationStatus(organizationId, options).then((request) => request(axios, basePath));
+        webhookControllerGetInitializationStatus(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookInitializationStatus> {
+            return localVarFp.webhookControllerGetInitializationStatus(organizationId, xDaytonaOrganizationID, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -191,24 +203,26 @@ export class WebhooksApi extends BaseAPI {
      * 
      * @summary Get Svix Consumer App Portal access for an organization
      * @param {string} organizationId 
+     * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhooksApi
      */
-    public webhookControllerGetAppPortalAccess(organizationId: string, options?: RawAxiosRequestConfig) {
-        return WebhooksApiFp(this.configuration).webhookControllerGetAppPortalAccess(organizationId, options).then((request) => request(this.axios, this.basePath));
+    public webhookControllerGetAppPortalAccess(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).webhookControllerGetAppPortalAccess(organizationId, xDaytonaOrganizationID, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
      * @summary Get webhook initialization status for an organization
      * @param {string} organizationId 
+     * @param {string} [xDaytonaOrganizationID] Use with JWT to specify the organization ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WebhooksApi
      */
-    public webhookControllerGetInitializationStatus(organizationId: string, options?: RawAxiosRequestConfig) {
-        return WebhooksApiFp(this.configuration).webhookControllerGetInitializationStatus(organizationId, options).then((request) => request(this.axios, this.basePath));
+    public webhookControllerGetInitializationStatus(organizationId: string, xDaytonaOrganizationID?: string, options?: RawAxiosRequestConfig) {
+        return WebhooksApiFp(this.configuration).webhookControllerGetInitializationStatus(organizationId, xDaytonaOrganizationID, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

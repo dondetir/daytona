@@ -4,7 +4,7 @@
  */
 
 import { Controller, Post, Get, Param, UseGuards, HttpStatus, NotFoundException } from '@nestjs/common'
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiOAuth2 } from '@nestjs/swagger'
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiOAuth2, ApiHeader } from '@nestjs/swagger'
 import { WebhookService } from '../services/webhook.service'
 import { OrganizationAuthContextGuard } from '../../organization/guards/organization-auth-context.guard'
 import { WebhookAppPortalAccessDto } from '../dto/webhook-app-portal-access.dto'
@@ -12,11 +12,13 @@ import { WebhookInitializationStatusDto } from '../dto/webhook-initialization-st
 import { AuthenticatedRateLimitGuard } from '../../common/guards/authenticated-rate-limit.guard'
 import { AuthStrategy } from '../../auth/decorators/auth-strategy.decorator'
 import { AuthStrategyType } from '../../auth/enums/auth-strategy-type.enum'
+import { CustomHeaders } from '../../common/constants/header.constants'
 
 @Controller('webhooks')
 @ApiTags('webhooks')
 @ApiOAuth2(['openid', 'profile', 'email'])
 @ApiBearerAuth()
+@ApiHeader(CustomHeaders.ORGANIZATION_ID)
 @AuthStrategy([AuthStrategyType.API_KEY, AuthStrategyType.JWT])
 @UseGuards(AuthenticatedRateLimitGuard)
 @UseGuards(OrganizationAuthContextGuard)

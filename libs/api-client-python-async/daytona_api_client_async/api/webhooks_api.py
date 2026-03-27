@@ -17,7 +17,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictStr
+from pydantic import Field, StrictStr
+from typing import Optional
+from typing_extensions import Annotated
 from daytona_api_client_async.models.webhook_app_portal_access import WebhookAppPortalAccess
 from daytona_api_client_async.models.webhook_initialization_status import WebhookInitializationStatus
 
@@ -43,6 +45,7 @@ class WebhooksApi:
     async def webhook_controller_get_app_portal_access(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -61,6 +64,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -85,6 +90,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_app_portal_access_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -109,6 +115,7 @@ class WebhooksApi:
     async def webhook_controller_get_app_portal_access_with_http_info(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -127,6 +134,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -151,6 +160,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_app_portal_access_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -175,6 +185,7 @@ class WebhooksApi:
     async def webhook_controller_get_app_portal_access_without_preload_content(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -193,6 +204,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -217,6 +230,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_app_portal_access_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -236,6 +250,7 @@ class WebhooksApi:
     def _webhook_controller_get_app_portal_access_serialize(
         self,
         organization_id,
+        x_daytona_organization_id,
         _request_auth,
         _content_type,
         _headers,
@@ -261,6 +276,8 @@ class WebhooksApi:
             _path_params['organizationId'] = organization_id
         # process the query parameters
         # process the header parameters
+        if x_daytona_organization_id is not None:
+            _header_params['X-Daytona-Organization-ID'] = x_daytona_organization_id
         # process the form parameters
         # process the body parameter
 
@@ -302,6 +319,7 @@ class WebhooksApi:
     async def webhook_controller_get_initialization_status(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -320,6 +338,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -344,6 +364,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_initialization_status_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -369,6 +390,7 @@ class WebhooksApi:
     async def webhook_controller_get_initialization_status_with_http_info(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -387,6 +409,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -411,6 +435,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_initialization_status_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -436,6 +461,7 @@ class WebhooksApi:
     async def webhook_controller_get_initialization_status_without_preload_content(
         self,
         organization_id: StrictStr,
+        x_daytona_organization_id: Annotated[Optional[StrictStr], Field(description="Use with JWT to specify the organization ID")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -454,6 +480,8 @@ class WebhooksApi:
 
         :param organization_id: (required)
         :type organization_id: str
+        :param x_daytona_organization_id: Use with JWT to specify the organization ID
+        :type x_daytona_organization_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -478,6 +506,7 @@ class WebhooksApi:
 
         _param = self._webhook_controller_get_initialization_status_serialize(
             organization_id=organization_id,
+            x_daytona_organization_id=x_daytona_organization_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -498,6 +527,7 @@ class WebhooksApi:
     def _webhook_controller_get_initialization_status_serialize(
         self,
         organization_id,
+        x_daytona_organization_id,
         _request_auth,
         _content_type,
         _headers,
@@ -523,6 +553,8 @@ class WebhooksApi:
             _path_params['organizationId'] = organization_id
         # process the query parameters
         # process the header parameters
+        if x_daytona_organization_id is not None:
+            _header_params['X-Daytona-Organization-ID'] = x_daytona_organization_id
         # process the form parameters
         # process the body parameter
 
