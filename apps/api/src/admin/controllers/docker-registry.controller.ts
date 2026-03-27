@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0
  */
 
-import { Controller, Param, Post, UseGuards } from '@nestjs/common'
+import { Controller, HttpCode, Param, Post, UseGuards } from '@nestjs/common'
 import { AuthenticatedRateLimitGuard } from '../../common/guards/authenticated-rate-limit.guard'
 import { ApiBearerAuth, ApiOAuth2, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger'
 import { RequiredSystemRole } from '../../user/decorators/required-system-role.decorator'
@@ -27,6 +27,7 @@ export class AdminDockerRegistryController {
   constructor(private readonly dockerRegistryService: DockerRegistryService) {}
 
   @Post(':id/set-default')
+  @HttpCode(200)
   @ApiOperation({
     summary: 'Set default registry',
     operationId: 'adminSetDefaultRegistry',
