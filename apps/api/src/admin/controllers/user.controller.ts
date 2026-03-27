@@ -58,8 +58,9 @@ export class AdminUserController {
     summary: 'List all users',
     operationId: 'adminListUsers',
   })
-  async findAll(): Promise<User[]> {
-    return this.userService.findAll()
+  async findAll(): Promise<UserDto[]> {
+    const users = await this.userService.findAll()
+    return users.map(UserDto.fromUser)
   }
 
   @Post('/:id/regenerate-key-pair')
