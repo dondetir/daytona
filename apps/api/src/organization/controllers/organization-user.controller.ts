@@ -13,8 +13,8 @@ import { OrganizationUserDto } from '../dto/organization-user.dto'
 import { OrganizationMemberRole } from '../enums/organization-member-role.enum'
 import { OrganizationAuthContextGuard } from '../guards/organization-auth-context.guard'
 import { OrganizationUserService } from '../services/organization-user.service'
-import { IsUserAuthContext } from '../../common/decorators/auth-context.decorator'
-import { UserAuthContext } from '../../common/interfaces/user-auth-context.interface'
+import { IsOrganizationAuthContext } from '../../common/decorators/auth-context.decorator'
+import { OrganizationAuthContext } from '../../common/interfaces/organization-auth-context.interface'
 import { Audit, TypedRequest } from '../../audit/decorators/audit.decorator'
 import { AuditAction } from '../../audit/enums/audit-action.enum'
 import { AuditTarget } from '../../audit/enums/audit-target.enum'
@@ -82,7 +82,7 @@ export class OrganizationUserController {
     },
   })
   async updateAccess(
-    @IsUserAuthContext() authContext: UserAuthContext,
+    @IsOrganizationAuthContext() authContext: OrganizationAuthContext,
     @Param('organizationId') organizationId: string,
     @Param('userId') userId: string,
     @Body() dto: UpdateOrganizationMemberAccessDto,
