@@ -14,5 +14,5 @@ export interface OrganizationAuthContext extends UserAuthContext {
 }
 
 export function isOrganizationAuthContext(user: unknown): user is OrganizationAuthContext {
-  return isUserAuthContext(user) && 'organization' in user && 'organizationUser' in user
+  return isUserAuthContext(user) && 'organizationId' in user && 'organization' in user && 'organizationUser' in user
 }
