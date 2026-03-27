@@ -26,7 +26,6 @@ import { AuthenticatedRateLimitGuard } from '../../common/guards/authenticated-r
 @AuthStrategy(AuthStrategyType.JWT)
 @UseGuards(AuthenticatedRateLimitGuard)
 @UseGuards(OrganizationAuthContextGuard)
-@RequiredOrganizationMemberRole(OrganizationMemberRole.OWNER)
 export class OrganizationRoleController {
   constructor(private readonly organizationRoleService: OrganizationRoleService) {}
 
@@ -45,6 +44,7 @@ export class OrganizationRoleController {
     description: 'Organization role created successfully',
     type: OrganizationRoleDto,
   })
+  @RequiredOrganizationMemberRole(OrganizationMemberRole.OWNER)
   @Audit({
     action: AuditAction.CREATE,
     targetType: AuditTarget.ORGANIZATION_ROLE,
@@ -105,6 +105,7 @@ export class OrganizationRoleController {
     description: 'Role updated successfully',
     type: OrganizationRoleDto,
   })
+  @RequiredOrganizationMemberRole(OrganizationMemberRole.OWNER)
   @Audit({
     action: AuditAction.UPDATE,
     targetType: AuditTarget.ORGANIZATION_ROLE,
@@ -145,6 +146,7 @@ export class OrganizationRoleController {
     status: 204,
     description: 'Organization role deleted successfully',
   })
+  @RequiredOrganizationMemberRole(OrganizationMemberRole.OWNER)
   @Audit({
     action: AuditAction.DELETE,
     targetType: AuditTarget.ORGANIZATION_ROLE,
