@@ -36,8 +36,6 @@ import type { PaginatedAuditLogs } from '../models';
 // @ts-ignore
 import type { RunnerFull } from '../models';
 // @ts-ignore
-import type { RunnerSnapshotDto } from '../models';
-// @ts-ignore
 import type { Sandbox } from '../models';
 // @ts-ignore
 import type { SendWebhookDto } from '../models';
@@ -357,89 +355,6 @@ export const AdminApiAxiosParamCreator = function (configuration?: Configuration
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             // authentication oauth2 required
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get runner by sandbox ID
-         * @param {string} sandboxId Sandbox ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminGetRunnerBySandboxId: async (sandboxId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sandboxId' is not null or undefined
-            assertParamExists('adminGetRunnerBySandboxId', 'sandboxId', sandboxId)
-            const localVarPath = `/admin/runners/by-sandbox/{sandboxId}`
-                .replace(`{${"sandboxId"}}`, encodeURIComponent(String(sandboxId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            // authentication oauth2 required
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get runners by snapshot ref
-         * @param {string} ref Snapshot ref
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminGetRunnersBySnapshotRef: async (ref: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'ref' is not null or undefined
-            assertParamExists('adminGetRunnersBySnapshotRef', 'ref', ref)
-            const localVarPath = `/admin/runners/by-snapshot-ref`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            // authentication oauth2 required
-
-            if (ref !== undefined) {
-                localVarQueryParameter['ref'] = ref;
-            }
 
 
     
@@ -1005,32 +920,6 @@ export const AdminApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get runner by sandbox ID
-         * @param {string} sandboxId Sandbox ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminGetRunnerBySandboxId(sandboxId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RunnerFull>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminGetRunnerBySandboxId(sandboxId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AdminApi.adminGetRunnerBySandboxId']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get runners by snapshot ref
-         * @param {string} ref Snapshot ref
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async adminGetRunnersBySnapshotRef(ref: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<RunnerSnapshotDto>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.adminGetRunnersBySnapshotRef(ref, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AdminApi.adminGetRunnersBySnapshotRef']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
          * @summary Get user by ID
          * @param {string} id 
          * @param {*} [options] Override http request option.
@@ -1259,26 +1148,6 @@ export const AdminApiFactory = function (configuration?: Configuration, basePath
         },
         /**
          * 
-         * @summary Get runner by sandbox ID
-         * @param {string} sandboxId Sandbox ID
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminGetRunnerBySandboxId(sandboxId: string, options?: RawAxiosRequestConfig): AxiosPromise<RunnerFull> {
-            return localVarFp.adminGetRunnerBySandboxId(sandboxId, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get runners by snapshot ref
-         * @param {string} ref Snapshot ref
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        adminGetRunnersBySnapshotRef(ref: string, options?: RawAxiosRequestConfig): AxiosPromise<Array<RunnerSnapshotDto>> {
-            return localVarFp.adminGetRunnersBySnapshotRef(ref, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary Get user by ID
          * @param {string} id 
          * @param {*} [options] Override http request option.
@@ -1484,30 +1353,6 @@ export class AdminApi extends BaseAPI {
      */
     public adminGetRunnerById(id: string, options?: RawAxiosRequestConfig) {
         return AdminApiFp(this.configuration).adminGetRunnerById(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get runner by sandbox ID
-     * @param {string} sandboxId Sandbox ID
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminApi
-     */
-    public adminGetRunnerBySandboxId(sandboxId: string, options?: RawAxiosRequestConfig) {
-        return AdminApiFp(this.configuration).adminGetRunnerBySandboxId(sandboxId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get runners by snapshot ref
-     * @param {string} ref Snapshot ref
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof AdminApi
-     */
-    public adminGetRunnersBySnapshotRef(ref: string, options?: RawAxiosRequestConfig) {
-        return AdminApiFp(this.configuration).adminGetRunnersBySnapshotRef(ref, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

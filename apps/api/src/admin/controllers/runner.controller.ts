@@ -28,7 +28,6 @@ import { RegionService } from '../../region/services/region.service'
 import { CreateRunnerResponseDto } from '../../sandbox/dto/create-runner-response.dto'
 import { RunnerFullDto } from '../../sandbox/dto/runner-full.dto'
 import { RunnerDto } from '../../sandbox/dto/runner.dto'
-import { RunnerSnapshotDto } from '../../sandbox/dto/runner-snapshot.dto'
 import { RunnerService } from '../../sandbox/services/runner.service'
 import { SystemRole } from '../../user/enums/system-role.enum'
 import { AuthStrategy } from '../../auth/decorators/auth-strategy.decorator'
@@ -94,51 +93,6 @@ export class AdminRunnerController {
     })
 
     return CreateRunnerResponseDto.fromRunner(runner, apiKey)
-  }
-
-  @Get('/by-sandbox/:sandboxId')
-  @HttpCode(200)
-  @ApiOperation({
-    summary: 'Get runner by sandbox ID',
-    operationId: 'adminGetRunnerBySandboxId',
-  })
-  @ApiParam({
-    name: 'sandboxId',
-    description: 'Sandbox ID',
-    type: String,
-  })
-  @ApiResponse({
-    status: 200,
-    type: RunnerFullDto,
-  })
-  async getRunnerBySandboxId(@Param('sandboxId') sandboxId: string): Promise<RunnerFullDto> {
-    const runner = await this.runnerService.findBySandboxId(sandboxId)
-
-    if (!runner) {
-      throw new NotFoundException('Runner not found')
-    }
-
-    return RunnerFullDto.fromRunner(runner)
-  }
-
-  @Get('/by-snapshot-ref')
-  @HttpCode(200)
-  @ApiOperation({
-    summary: 'Get runners by snapshot ref',
-    operationId: 'adminGetRunnersBySnapshotRef',
-  })
-  @ApiQuery({
-    name: 'ref',
-    description: 'Snapshot ref',
-    type: String,
-    required: true,
-  })
-  @ApiResponse({
-    status: 200,
-    type: [RunnerSnapshotDto],
-  })
-  async getRunnersBySnapshotRef(@Query('ref') ref: string): Promise<RunnerSnapshotDto[]> {
-    return this.runnerService.getRunnersBySnapshotRef(ref)
   }
 
   @Get(':id')
