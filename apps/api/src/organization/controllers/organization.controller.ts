@@ -31,7 +31,7 @@ import { OrganizationAuthContextGuard } from '../guards/organization-auth-contex
 import { OrganizationService } from '../services/organization.service'
 import { OrganizationUserService } from '../services/organization-user.service'
 import { OrganizationInvitationService } from '../services/organization-invitation.service'
-import { IsUserAuthContext } from '../../common/decorators/auth-context.decorator'
+import { IsOrganizationAuthContext, IsUserAuthContext } from '../../common/decorators/auth-context.decorator'
 import { UserAuthContext } from '../../common/interfaces/user-auth-context.interface'
 import { RequiredSystemRole } from '../../user/decorators/required-system-role.decorator'
 import { SystemRole } from '../../user/enums/system-role.enum'
@@ -50,6 +50,7 @@ import { UpdateOrganizationDefaultRegionDto } from '../dto/update-organization-d
 import { RequireFlagsEnabled } from '@openfeature/nestjs-sdk'
 import { OtelCollectorAuthContextGuard } from '../guards/otel-collector-auth-context.guard'
 import { OtelConfigDto } from '../dto/otel-config.dto'
+import { OrganizationAuthContext } from '../../common/interfaces/organization-auth-context.interface'
 
 @Controller('organizations')
 @ApiTags('organizations')
@@ -428,7 +429,7 @@ export class OrganizationController {
     action: AuditAction.LEAVE_ORGANIZATION,
   })
   async leave(
-    @IsUserAuthContext() authContext: UserAuthContext,
+    @IsOrganizationAuthContext() authContext: OrganizationAuthContext,
     @Param('organizationId') organizationId: string,
   ): Promise<void> {
     return this.organizationUserService.delete(organizationId, authContext.userId)
