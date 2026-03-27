@@ -16,7 +16,7 @@ import { getAuthContext } from '../utils/get-auth-context'
  * Accepts a type guard to validate the context type at runtime.
  */
 export const AuthContext = createParamDecorator(
-  (isFunction: (user: BaseAuthContext) => user is BaseAuthContext, ctx: ExecutionContext) => {
+  <T extends BaseAuthContext>(isFunction: (user: unknown) => user is T, ctx: ExecutionContext): T => {
     return getAuthContext(ctx, isFunction)
   },
 )
